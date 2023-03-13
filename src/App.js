@@ -1,11 +1,18 @@
+import "./styles/global/style.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import WelcomePage from "./pages/WelcomePage";
 
 
-function App() {
-  return (
-    <div className="App">
-     <h1>welcome</h1>
-    </div>
-  );
+export default function App() {
+    return (
+        <BrowserRouter>
+            <WelcomePage />
+            <Routes>
+
+
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
-export default App;

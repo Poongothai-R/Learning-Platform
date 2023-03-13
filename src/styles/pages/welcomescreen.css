@@ -1,0 +1,171 @@
+#welcomescreen {
+    min-height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(to bottom right, #457C93 13%, #557C93 50%);
+    background-repeat: no-repeat;
+    color: #0f0707;
+}
+
+.welcome-container {
+    max-width: 50vw;
+    padding: 20px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    flex: 1 1 50%;
+    align-content: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+
+#welcomescreen h1 {
+    text-align: center;
+    padding-top: 20vh;
+    padding-bottom: 10vh;
+    font-size: 50px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.desc-section h2 {
+    font-size: 36px;
+    padding-bottom: 20px;
+}
+
+.desc-section p {
+    font-size: 26px;
+    text-align: justify;
+}
+
+.welcome-container img {
+    border: 1px solid #fff;
+    border-radius: 10px;
+    height: 100%;
+    margin: auto;
+}
+
+.link-btn {
+    text-align: center;
+    margin: 100px auto;
+    font-size: 22px;
+    max-width: 50vw;
+}
+
+.link-btn a {
+    display: inline-block;
+    text-decoration: none;
+    color: #0f0707;
+    margin: 50px;
+    width: 100px;
+    padding: 10px 30px;
+    border: 1px solid #0f0707;
+    border-radius: 10px;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.link-btn a:hover {
+    background-color: #0f0707;
+    color: #f7f7f7;
+}
+
+@media screen and (max-width:920px) {
+    .welcome-container {
+        max-width: 50vw;
+        flex-direction: column;
+    }
+
+    #welcomescreen h1 {
+        max-width: 80vw;
+        margin:0 auto;
+        font-size: 24px;
+        padding-top: 20vh;
+        padding-bottom: 50px;
+
+    }
+
+    .desc-section h2 {
+        font-size: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .desc-section p {
+        font-size: 18px;
+        text-align: justify;
+    }
+    .welcome-container img {
+        height: 150px;
+        width: 200px;
+    }
+
+    .link-btn {
+        margin: 30px auto;
+        max-width: 80vw;
+    }
+    .link-btn a {
+        font-size: 16px;
+        width: 60px;
+        margin:10px;
+    }
+
+}
+
+@media screen and (max-width:600px) {
+    #welcomescreen>h1 {
+        padding-top: 10vh;
+        padding-bottom: 50px;
+    }
+
+    .welcome-container {
+        flex-direction: column;
+    }
+
+    .desc-section h2 {
+        text-align: center;
+    }
+
+    .link-btn{
+        margin: 10px auto;
+
+    }
+}
+
+@media screen and (max-width:600px) and (min-height:700px) {
+    #welcomescreen  h1 {
+        padding-top: 15vh;
+
+    }
+}
+
+@media screen and (min-width:960px) and (max-height:800px) {
+    #welcomescreen h1 {
+        padding-top: 15vh;
+        max-width: 50vw;
+        margin: 0 auto;
+        font-size: 30px;
+        letter-spacing: 4px;
+    }
+
+
+    .desc-section h2 {
+        font-size: 24px;
+        padding-bottom: 20px;
+    }
+
+    .desc-section p {
+        font-size: 20px;
+        text-align: justify;
+    }
+
+    .welcome-container{
+        max-width: 50vw;
+    }
+
+    .link-btn{
+        max-width: 80vw;
+        margin: 10px auto;
+    }
+
+}
