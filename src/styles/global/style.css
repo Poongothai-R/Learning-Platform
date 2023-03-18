@@ -1,4 +1,6 @@
+@import "../global/app.css";
 
-@import "./app.css";
-
-@import "../pages/welcomescreen.css";
+@import "../page-style/welcomepage.css";
+@import "../page-style/login.css";
+@import "../page-style/signup.css";
+@import "../page-style/recoverpassword.css";
