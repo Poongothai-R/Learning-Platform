@@ -1,26 +1,22 @@
-
 export default function InputFile({ item, state }) {
     const [form, setForm] = state;
-
-    // Properties
     const formKey = [item.key];
 
     function validateFileSize(event) {
-        let fileSize=0, fileMb = 0;
+        let fileSize = 0, fileMb = 0;
 
         if (event.target.files.length > 0) {
             for (let i = 0; i < event.target.files.length; i++) {
                 fileSize = event.target.files[i].size + fileSize;
                 fileMb = fileSize / 1024 ** 2;
             }
-            console.log(fileMb);
-            let formSubmit = document.getElementById("addCourse-submit");
-            if (fileMb > 15) {
-                formSubmit.disabled = true;
+            let fileButton = document.getElementById(item.key);
+            if (fileMb > 50) {
+                fileButton.style.border = "2px solid red";
                 alert('Please select overall file size should be less than 50MB')
             }
             else {
-                formSubmit.disabled = false;
+                fileButton.style.border = "none";
                 setForm({ ...form, [formKey]: event.target.files });
             }
         }
@@ -32,8 +28,7 @@ export default function InputFile({ item, state }) {
             {item.multiple ?
                 <input
                     onChange={(event) => validateFileSize(event)}
-                    // setForm({...form, [formKey]: event.target.files}) }
-                    // Common properties
+                    id={item.key}
                     type={item.type}
                     required={item.required}
                     disabled={item.disabled}
@@ -43,8 +38,7 @@ export default function InputFile({ item, state }) {
                 /> :
                 <input
                     onChange={(event) => validateFileSize(event)}
-                    // setForm({...form, [formKey]: event.target.files[0]})}
-                    // Common properties
+                    id={item.key}
                     type={item.type}
                     required={item.required}
                     disabled={item.disabled}

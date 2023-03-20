@@ -1,5 +1,3 @@
-// Node modules
-// import { useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import { useRef } from "react";
 import form from "../data/form-fields.json";
@@ -18,13 +16,11 @@ export default function RecoverPassword() {
         event.preventDefault();
         const email = formRef.current[0].value;
         const result = await recoverAccount(email);
-
-        result.status ? onSucess() : onFailure(result);
+        result.status ? onSuccess() : onFailure(result);
     }
 
-    function onSucess() {
-        const text =
-            "Email with a reset link sent. Please check your SPAM/Junk folder as well.";
+    function onSuccess() {
+        const text = "Email with a reset link sent. Please check your SPAM/Junk folder as well.";
         alert(text);
         Navigate("/login");
     }

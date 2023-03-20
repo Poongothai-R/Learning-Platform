@@ -11,7 +11,7 @@ import { useUser } from "../state/UserState";
 export default function Login() {
     const navigate = useNavigate();
     const formRef = useRef(null);
-    const { setUid, profileData } = useUser();
+    const { saveUID,setUid, profileData,setIsTeacher } = useUser();
     async function onSubmit(event) {
         event.preventDefault();
         const email = formRef.current[0].value;
@@ -21,20 +21,11 @@ export default function Login() {
     }
     
     function onSuccess(result) {
-        // Refactor note: store the uid in the context api (in the future)
-        // if (remember) {
-        //     console.log("Login.jsx preparing to save...", result.payload);
-        //     saveUID(result.payload);
-        //   }
         const profile = profileData.find((item) => item.uid === result.payload);
-        
-        if (profile.isTeacher){
-            console.log("You're a teacher!")
-        }
-
+        setIsTeacher(profile.isTeacher);
         setUid(result.payload);
+        saveUID(result.payload);
         navigate("/contentpage");
-
     }
 
     function onFailure(result) {

@@ -12,6 +12,7 @@ export async function readDocuments(collectionName) {
     const document = { id: doc.id, ...doc.data() };
     result.push(document);
   });
+  // console.log(result);
   return result;
 }
 

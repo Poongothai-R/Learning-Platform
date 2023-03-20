@@ -4,21 +4,20 @@ import form from "../data/form-fields.json";
 import InputField from "../components/InputField";
 import { createAccount } from "../scripts/auth";
 import { createDocument } from "../scripts/fireStore";
+import { useUser } from "../state/UserState";
 
 export default function Signup() {
     const formRef = useRef(null);
     const Navigate = useNavigate();
+    const {profileData,setProfileData} = useUser();
     async function onSubmit(event) {
         event.preventDefault();
         const email = formRef.current[3].value;
         const password = formRef.current[4].value;
         const result = await createAccount(email, password);
-        // result.status ? await createDocument('profile',data):onFailure(result);
-        
         result.status ? onSuccess(result,event) : onFailure(result);
     }
     async function onSuccess(result,event) {
-        // Refactor note: store the uid in the context api (in the future)
         const data ={
             "firstName":formRef.current[0].value,
             "lastName":formRef.current[1].value,
@@ -28,7 +27,8 @@ export default function Signup() {
             "uid":result.payload
         };
         let document = await createDocument('profile',data);
-        console.log(document);
+        const updatedProfileData = [...profileData, {id: result.payload, ...data} ]
+        setProfileData(updatedProfileData);
         event.target.reset();
         Navigate("/login");
         alert('Account created!');

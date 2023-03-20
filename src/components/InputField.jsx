@@ -4,11 +4,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"
 export default function InputField({ settings, }) {
     // safeguard
     if (settings === undefined) throw new Error("The setting prop is missing");
-    // if (state === undefined) throw new Error("The state prop is missing");
-
-    const { label, type, placeholder, required, autoFocus, accept, id } = settings;
-    // const [getter, setter] = state;
-
+    const { label, type, placeholder, required, autoFocus, accept, id } = settings;;
     const [showPassword, setShowPassword] = useState(false);
     function handlePasswordView() {
         var x = document.getElementById("passwordField");

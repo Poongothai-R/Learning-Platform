@@ -7,9 +7,11 @@ const Context = createContext();
 export function UserProvider({ children, storageKey }) {
     // Local state
     const [uid, setUid] = useState(loadUID(storageKey));
-    const [profileData, setProfileData] = useState(null);
+    const [profileData, setProfileData] = useState([]);
+    const [courseData, setCourseData] = useState([]);
+    const [isTeacher, setIsTeacher] = useState(false);
     // Properties
-    const value = { uid, setUid, saveUID, profileData, setProfileData };
+    const value = { uid, setUid, saveUID, profileData, setProfileData, courseData, setCourseData, isTeacher, setIsTeacher };
 
     // Pure
     function loadUID(storageKey) {
