@@ -29,7 +29,7 @@ To run the project in the production mode, use this command npm run build.
 
 ## 5-step process
 
- Requirement Gathering : https://docs.google.com/document/d/1xdEqWcbFHeB9HPvbA1EJiGiZ28O66d7e/edit?usp=sharing&ouid=116703376871078166819&rtpof=true&sd=true
+ Requirement Gathering : https://www.icloud.com/pages/07aGPyKXurib_3ayzfyI1_q5g#Learning-platform-requirements
 
  Project Spreadsheet :https://docs.google.com/spreadsheets/d/1NO226YsXP2pMrgOnNySKbFydMJ5xd8M-1KLYqX9kdN4
  
