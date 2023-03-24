@@ -3,8 +3,10 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { sendPasswordResetEmail } from "firebase/auth";
 
+
 // Project files
 import { auth } from "./firebaseSetup";
+
 
 // Methods
 // if correct, it returns the UID
@@ -50,4 +52,17 @@ export async function recoverAccount(email) {
   }
 
   return result;
+}
+
+
+export async function disableAccount(uid){
+  let result = { status: false, payload: "", message: "" };
+  try{
+    await auth.updateUser(uid,{disabled: true});
+    result = { status: true, payload: "", message: "account disabled" };
+  }
+  catch (error) {console.log(error);
+    result.message = error.code;
+}
+return result;
 }

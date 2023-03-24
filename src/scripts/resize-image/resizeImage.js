@@ -13,9 +13,7 @@ export default async function resizeImage(imageSource, width, height) {
   async function loadImage(image) {
     const result = new Image();
     result.src = image;
-  
     await new Promise((resolve) => (result.onload = resolve));
-  
     return result;
   }
   
@@ -30,7 +28,6 @@ export default async function resizeImage(imageSource, width, height) {
       newWidth *= height / newHeight;
       newHeight = height;
     }
-  
     return { width: newWidth, height: newHeight };
   }
   
@@ -38,7 +35,6 @@ export default async function resizeImage(imageSource, width, height) {
     const canvasToDataURL = canvas.toDataURL("image/png");
     const DataURLToBlob = await fetch(canvasToDataURL);
     const result = await DataURLToBlob.blob();
-  
     return result;
   }
   

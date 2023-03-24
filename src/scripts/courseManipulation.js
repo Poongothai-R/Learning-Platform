@@ -1,11 +1,11 @@
-import {ImageProcess} from "./imageProcess";
-import {deleteFile, downloadFile, uploadFile} from "./cloudStorage";
-import {updateDocument,createDocument} from "./fireStore";
+import { ImageProcess } from "./imageProcess";
+import { deleteFile, downloadFile, uploadFile } from "./cloudStorage";
+import { updateDocument, createDocument } from "./fireStore";
 
 
 let image;
 let keepFile = true;
-export async function updateCourse({form},data,courseData){
+export async function courseManipulation({ form }, data, courseData) {
 
     const courseImageFolder = 'courseImages';
     const courseDocFileFolder = 'docFiles';
@@ -16,7 +16,7 @@ export async function updateCourse({form},data,courseData){
         image = await ImageProcess(form.courseImage[0], courseImageFolder);
         keepFile = false;
     }
-    else if(data==null){image=image}
+    else if (data === null) { image = form.courseImage }
     else { image = data.courseImage; }
 
 
@@ -29,8 +29,8 @@ export async function updateCourse({form},data,courseData){
             docFileArray = [...docFileArray, docFileURL];
         }
     }
-    else if(data==null){docFileArray=docFileArray}
-    else  { docFileArray = data.docFiles; }
+    else if (data == null) { docFileArray = form.docFiles }
+    else { docFileArray = data.docFiles; }
 
     let videoFileArray = [];
     if ((form.videoFiles !== undefined) && (form.videoFiles !== null)) {
@@ -41,7 +41,7 @@ export async function updateCourse({form},data,courseData){
             videoFileArray = [...videoFileArray, videoFileURL];
         }
     }
-    else if(data==null){videoFileArray=videoFileArray}
+    else if (data == null) { videoFileArray = form.videoFiles }
     else { videoFileArray = data.videoFiles; }
 
     const courseCollectionData = {
@@ -51,19 +51,20 @@ export async function updateCourse({form},data,courseData){
         "docFiles": docFileArray,
         "videoFiles": videoFileArray
     }
-    if((data&&courseData)=== null){
-        const result = await createDocument('course',courseCollectionData);
-        return result;
+    if (data === null) {
+        const result = await createDocument('course', courseCollectionData);
+        const newContent = {id: result.id, ...form};
+        const newCourseData = [...courseData, newContent];
+        return newCourseData;
     }
-    else
-    {
-    const clonedData = [...courseData];
-    const itemIndex = clonedData.findIndex((item) => item.id === data.id);
-    const imageURL = clonedData[itemIndex].courseImage;
-    if (!keepFile) { deleteFile(imageURL); }
-    await updateDocument('course', courseCollectionData, data.id);
-    const newData = { id: data.id, ...courseCollectionData };
-    clonedData[itemIndex] = newData;
-    return(clonedData);
+    else {
+        const clonedData = [...courseData];
+        const itemIndex = clonedData.findIndex((item) => item.id === data.id);
+        const imageURL = clonedData[itemIndex].courseImage;
+        if (!keepFile) { deleteFile(imageURL); }
+        await updateDocument('course', courseCollectionData, data.id);
+        const newData = { id: data.id, ...courseCollectionData };
+        clonedData[itemIndex] = newData;
+        return (clonedData);
     }
 }

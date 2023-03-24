@@ -1,47 +1,20 @@
-.signup-page {
-    min-height: 80vh;
-    width: 80vw;
-    margin: 10vh auto;
+.signup-page{
+    min-height: 90vh;
+    max-width: 80vw;
     border: 2px solid #c0a756;
+    margin: 5vh auto;
     text-align: center;
 }
 
-.signup-page>h1 {
-    font-size: 24px;
-    margin: 15px auto;
-}
-
-.signup-page>span {
+.signup-page span{
     border-bottom: 2px solid #c0a756;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
 }
 
-.signup-form {
-    margin-top: 50px;
+.signup-form{
+    margin-top: 30px;
 }
 
-.signup-form label {
-    display: block;
-    margin: 0 auto;
-    text-align: left;
-    font-size: 20px;
-    width: 80%;
-    height: 80px;
-    margin-bottom: 15px;
-    line-height: 2;
-}
-
-.signup-form label input,
-.signup-form label select {
-    width: 100%;
-    height: 30px;
-    border: 2px solid #c0a756;
-}
-
-.signup-form label select{cursor: pointer;}
-
-.signup-btn {
+.signup-btn{
     margin: 30px;
     padding: 10px;
     width: 40%;
@@ -49,145 +22,76 @@
     font-size: 18px;
     border: 2px solid #c0a756;
     cursor: pointer;
-}
-
-.login-link {
-    color: #f3f3f3;
-    padding-bottom: 5px;
-    margin: 15px;
+    transition: 0.3s ;
 }
 
 .signup-btn:hover{
     background-color: #0f0f0f;
-    color: #f7f7f7;
+    color: #f3f3f3;
 }
+.login-link {
+    display: block;
+    cursor: pointer;
+    color: #f3f3f3; 
+    text-align: center;
+    width: 80%;
+    margin:0 auto;
+    padding-bottom:30px;
+}
+
 
 @media screen and (min-width:300px) and (max-width:700px) and (min-height:700px) {}
 
 @media screen and (min-width:700px) and (max-width:1024px) {
-    .signup-page>h1 {
-        font-size: 36px;
-    }
-
-    .signup-page>span {
-        font-size: 22px;
-    }
-
-    .signup-form {
-        width: 70vw;
-        margin: 0 auto;
-        margin-top: 5vh;
-    }
-
-    .signup-form label {
-        width: 60%;
-        height: 120px;
-        font-size: 28px;
-    }
-
-    .signup-form label input,
-    .signup-form label select {
-        height: 40px;
-        font-size: 22px;
-    }
-
-    .signup-btn {
-        width: 25%;
+    .signup-page span {
         font-size: 24px;
     }
-
-    .login-link {
-        display: block;
-        margin: 50px;
-        font-size: 28px;
+    .signup-btn{
+        width: 25%;
+        margin-bottom: 50px;
+    }
+    .signup-page h1{
+        margin-top: 50px;
     }
 }
 
 @media screen and (min-width:700px) and (max-height:800px) {
-    .signup-page {
-        width: 50vw;
-    }
-    .signup-page h1 {
-        font-size: 28px;
+    .signup-page{
+        max-width: 50vw;
     }
 
-    .signup-page span {
-        font-size: 18px;
+    .signup-form{
+        width: 50%;
+        margin: auto;
+        margin-top: 50px;
     }
 
-    .signup-form {
-        width: 50vw;
-        margin: 0 auto;
-        margin-top: 5vh;
+    .signup-btn{
+        width: 35%;
+        margin-bottom: 50px;
+    }
+    .signup-page h1{
+        margin-top: 50px;
     }
 
-    .signup-form label {
-        width: 60%;
-        height: 100px;
-        font-size: 28px;
-        line-height: 1.5;
-        margin-bottom: 5px;
-    }
-
-    .signup-form label input, .signup-form label select {
-        height: 30px;
-        font-size: 18px;
-    }
-
-    .signup-btn {
-        width: 20%;
-        font-size: 20px;
-        padding: 5px;
-        margin: 15px;
-    }
-
-    .login-link{
-        display: block;
-        margin: 30px;
-        font-size: 16px;
-    }
 }
 
-@media screen and (min-width:1025px)and (min-height:801px) {
-    .signup-page {
-        width: 35vw;
-    }
-    .signup-page h1 {
-        font-size: 30px;
+@media screen and (min-width:1025px) and (min-height:801px) {
+    .signup-page{
+        max-width: 40vw;
     }
 
-    .signup-page span {
-        font-size: 20px;
-    }
-
-    .signup-form {
-        width: 35vw;
-        margin: 0 auto;
-        margin-top: 5vh;
-    }
-
-    .signup-form label {
+    .signup-form{
         width: 50%;
-        height: 100px;
-        font-size: 30px;
-        line-height: 1.5;
-        margin-bottom: 5px;
+        margin: auto;
+        margin-top: 50px;
     }
 
-    .signup-form label input, .signup-form label select {
-        height: 30px;
-        font-size: 20px;
+    .signup-btn{
+        width: 35%;
+        margin-bottom: 50px;
     }
-
-    .signup-btn {
-        width: 15%;
-        font-size: 20px;
-        padding: 10px;
-        margin: 15px;
-    }
-    .login-link {
-        display: block;
-        margin: 50px;
-        font-size: 20px;
+    .signup-page h1{
+        margin-top: 50px;
     }
 }

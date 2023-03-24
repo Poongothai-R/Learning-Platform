@@ -1,44 +1,34 @@
-import { Link } from "react-router-dom";
 import FocusImage from "../assets/focus-title.jpg";
-import { useEffect } from "react";
-import { readDocuments } from "../scripts/fireStore";
-import { useUser } from "../state/UserState";
+import { Link } from "react-router-dom";
+import { useProfile } from "../state/useProfile";
 
 export default function WelcomePage() {
-    const { setProfileData } = useUser();
-    const profileCollection = 'profile';
-    useEffect(() => {
-        const loadData = async (collectionName) => {
-            const data = await readDocuments(collectionName).catch(onFail);
-            onSuccess(data);
-        }
-        loadData(profileCollection);
-    }, []);
-    
-    function onSuccess(data) {
-      setProfileData(data);
-        // setStatus(1);
-    }
-    
-    function onFail() { 
-      // setStatus(2); 
-      console.error();
-    }
+
+    const {profileData, status} =useProfile();
+
     return (
         <div id="welcomepage" >
-            <div className="welcome-page">
-                <div className="welcome-container">
-                    <h1>Take control of yourself</h1>
-                    <p>Build in-demand skills in everything from cybersecurity to software development. And then use those skills to confidently
-                        take your career—and your take-home pay—to the next level.
-                    </p>
+            {status === 0 && <p className="loading">Loading... </p>}
+            {status === 1 &&
+                <div>
+                <div className="welcome-page">
+                    <div className="welcome-container">
+                        <h1>Looking for a change? </h1>
+                        <p>It’s never a bad time to up
+                            skill yourself on something that your heart desires.
+                            You got passion, we got the courses for you to train and excel at your phase.
+                            It’s there for you 24/7.. Welcome to you next learning journey!
+                        </p>
+                    </div>
+                    <img src={FocusImage} alt="Focus title" />
                 </div>
-                <img src={FocusImage} alt="Focus title" />
                 <div className="link-btn">
-                    <Link to="/login">LogIn</Link>
-                    <Link to="/signup">SignUp</Link>
+                    <Link to={"/login"} state={{ profileData }}>LogIn</Link>
+                    <Link to={"/signup"} state={{ profileData }}>SignUp</Link>
                 </div>
             </div>
+            }
+            {status === 2 && <p>Error</p>}
         </div>
     );
 }

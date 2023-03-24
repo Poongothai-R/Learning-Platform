@@ -1,7 +1,7 @@
 import readFile from "./resize-image/readFile";
 import resizeImage from "./resize-image/resizeImage";
 import { uploadFile, downloadFile } from "./cloudStorage";
-// import {uploadFile} from "./cloudStorage";
+
 
 export async function ImageProcess(imageURL,folderName) {
     const filePath = `${folderName}/${Date.now()}_${imageURL.name}`;
@@ -10,7 +10,6 @@ export async function ImageProcess(imageURL,folderName) {
 
     await uploadFile(resizedImage, filePath);
     const image = await downloadFile(filePath);
-    // console.log(image);
     return image;
 
 }

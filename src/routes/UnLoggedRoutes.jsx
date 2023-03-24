@@ -1,15 +1,14 @@
-// Node modules
 import { Routes, Route } from "react-router-dom";
-
-
-// Project files
+import { useUser } from "../state/useUser";
 import WelcomePage from "../pages/WelcomePage";
-import Login from "../pages/Login";
-import Signup from "../pages/Singup";
-import RecoverPassword from "../pages/RecoverPassword";
 import PageNotFound from "../pages/PageNotFound";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+import RecoverPassword from "../pages/RecoverPassword";
 
-export default function UnloggedRoutes() {
+export default function UnLoggedRoutes() {
+    const { uid } = useUser();
+    console.log(uid);
     return (
         <Routes>
             <Route path="/" element={<WelcomePage />} />
