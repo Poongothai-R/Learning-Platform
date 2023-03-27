@@ -7,60 +7,76 @@ import { ImageProcess } from "../scripts/imageProcess";
 import FormFieldGenerator from "../components/FormFieldGenerator";
 import { useProfile } from "../state/useProfile";
 
+// good but too long
 export default function Signup() {
-    const [form, setForm] = useState({
-        FirstName: "", LastName: "", Gender: "", Email: "",
-        Password: "", Image: undefined });
-    const Navigate = useNavigate();
-    const {profileData, setProfileData} = useProfile();
-    async function onSubmit(event) {
-        event.preventDefault();
-        document.getElementById("signup-btn").disabled = true;
-        const result = await createAccount(form.Email, form.Password);
-        result.status ? onSuccess(result, event) : onFailure(result);
-    }
+  const [form, setForm] = useState({
+    FirstName: "",
+    LastName: "",
+    Gender: "",
+    Email: "",
+    Password: "",
+    Image: undefined,
+  });
+  const Navigate = useNavigate();
+  const { profileData, setProfileData } = useProfile();
+  async function onSubmit(event) {
+    event.preventDefault();
+    document.getElementById("signup-btn").disabled = true;
+    const result = await createAccount(form.Email, form.Password);
+    result.status ? onSuccess(result, event) : onFailure(result);
+  }
 
-    async function onSuccess(result) {
-        let imageURL = null;
-        if (form.Image !== undefined) {
-            imageURL = await ImageProcess(form.Image[0], 'profileImages');
-        }
-        const data = {
-            "firstName": form.FirstName,
-            "lastName": form.LastName,
-            "gender": form.Gender,
-            "email": form.Email,
-            "profilePic": imageURL,
-            "isTeacher": false,
-            "uid": result.payload
-        };
-        await createDocument('profile', data);
-        const updatedProfileData = [...profileData, { id: result.payload, ...data }]
-        setProfileData(updatedProfileData);
-        Navigate("/");
-        alert('Account created!');
-        document.getElementById("signup-btn").disabled = false;
+  // this function is too long, needs to be splitted into smaller task.
+  // see how i broke down the upload image function into smaller functions in the bbq
+  async function onSuccess(result) {
+    let imageURL = null;
+    if (form.Image !== undefined) {
+      imageURL = await ImageProcess(form.Image[0], "profileImages");
     }
-    
-    function onFailure(result) {
-        alert(`Cannot create an account, ${result.message}`);
-        document.getElementById("signup-btn").disabled = false;
-    }
+    const data = {
+      firstName: form.FirstName,
+      lastName: form.LastName,
+      gender: form.Gender,
+      email: form.Email,
+      profilePic: imageURL,
+      isTeacher: false,
+      uid: result.payload,
+    };
+    await createDocument("profile", data);
+    const updatedProfileData = [
+      ...profileData,
+      { id: result.payload, ...data },
+    ];
+    setProfileData(updatedProfileData);
+    Navigate("/");
+    alert("Account created!");
+    document.getElementById("signup-btn").disabled = false;
+  }
 
-    return (
-        <div id="signup">
-            <div className="signup-page">
-                <h1>Newbie</h1>
-                <span>Create your account here!</span>
-                <form className="signup-form" id="signupForm"
-                      onSubmit={(event) => onSubmit(event)}>
-                    <FormFieldGenerator data={ProfileFields} state={[form, setForm]} />
-                    <button className="signup-btn" id="signup-btn">SignUp</button>
-                </form>
-                <Link to="/login" state={{ profileData }} className="login-link">
-                    Already have an account?
-                </Link>
-            </div>
-        </div>
-    );
+  function onFailure(result) {
+    alert(`Cannot create an account, ${result.message}`);
+    document.getElementById("signup-btn").disabled = false;
+  }
+
+  return (
+    <div id="signup">
+      <div className="signup-page">
+        <h1>Newbie</h1>
+        <span>Create your account here!</span>
+        <form
+          className="signup-form"
+          id="signupForm"
+          onSubmit={(event) => onSubmit(event)}
+        >
+          <FormFieldGenerator data={ProfileFields} state={[form, setForm]} />
+          <button className="signup-btn" id="signup-btn">
+            SignUp
+          </button>
+        </form>
+        <Link to="/login" state={{ profileData }} className="login-link">
+          Already have an account?
+        </Link>
+      </div>
+    </div>
+  );
 }

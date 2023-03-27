@@ -1,5 +1,3 @@
-
-
 import "./styles/global/style.css";
 import { BrowserRouter } from "react-router-dom";
 import { useUser } from "./state/useUser";
@@ -10,10 +8,10 @@ import ScrollTop from "./scripts/ScrollTop";
 
 export default function App() {
   const { uid } = useUser();
-  
+
   return (
     <BrowserRouter>
-    <ScrollTop />
+      <ScrollTop />
       {/* <Navbar /> */}
       {uid ? <LoggedRoutes /> : <UnLoggedRoutes />}
       {/* <Footer /> */}
